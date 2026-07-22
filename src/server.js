@@ -1,11 +1,15 @@
+import 'dotenv/config';
+
 import express from 'express';
 import moviesRouters from './routes/moviesRouters.js'
-import { config } from 'dotenv';
+import authRouters from './routes/authRouter.js'
 import { connectDb, disconnectDb } from './config/db.js';
-
-config();
-connectDb();
+await connectDb();
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+
+app.use('/auth', authRouters)
 app.use('/movies', moviesRouters)
 const PORT = 5001;
 app.listen(PORT, ()=>{
