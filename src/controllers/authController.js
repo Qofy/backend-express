@@ -92,14 +92,14 @@ const login = async (req, res)=>{
     }
 }
 
-const logout = async ()=>{
+const logout = async (req, res)=>{
     res.cookie("jwt", "", {
         httpOnly: true,
         expires: new Date(0),
     })
-    res.status(201).json({
+    res.status(200).json({
             status:"success",
-            message: " Log out successfully",
+            message: "Log out successfully",
         });
 }
 
