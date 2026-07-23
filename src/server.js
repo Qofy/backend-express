@@ -3,6 +3,7 @@ import 'dotenv/config';
 import express from 'express';
 import moviesRouters from './routes/moviesRouters.js'
 import authRouters from './routes/authRouter.js'
+import watchList from './routes/watchListRouter.js'
 import { connectDb, disconnectDb } from './config/db.js';
 await connectDb();
 const app = express();
@@ -11,6 +12,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use('/auth', authRouters)
 app.use('/movies', moviesRouters)
+app.use('/watchlist', watchList)
 const PORT = 5001;
 app.listen(PORT, ()=>{
     console.log(`Server running on Port ${PORT}`)
